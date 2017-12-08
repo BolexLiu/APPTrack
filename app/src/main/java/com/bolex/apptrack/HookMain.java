@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -23,7 +26,7 @@ public class HookMain implements IXposedHookLoadPackage {
 
     private TextView msgTextView;
     static String msg = "";
-    private ScrollView msgScrollView;
+
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
@@ -40,8 +43,9 @@ public class HookMain implements IXposedHookLoadPackage {
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
                         Activity mActivity = (Activity) param.thisObject;
-                        addMsg(mActivity);
-
+                        View view = ViewHelp.creactMsgView(mActivity);
+                        msgTextView = ViewHelp.getMsgTextView();
+                        setMsgView(mActivity, view);
                         Intent intent = mActivity.getIntent();
                         ComponentName component = intent.getComponent();
                         String className = component.getClassName();
@@ -51,31 +55,7 @@ public class HookMain implements IXposedHookLoadPackage {
 
 
                 });
-
-
     }
-
-    private void addMsg(Activity mActivity) {
-        creactMsgView(mActivity);
-        View decorView = mActivity.getWindow().getDecorView();
-        if (decorView instanceof FrameLayout) {
-            ((FrameLayout) decorView).addView(msgScrollView);
-        }
-    }
-
-    private void creactMsgView(Activity mActivity) {
-        msgScrollView = new ScrollView(mActivity);
-        msgScrollView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                150));
-        msgTextView = new TextView(mActivity);
-        msgTextView.setTextColor(Color.WHITE);
-        msgTextView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT));
-        msgTextView.setBackgroundColor(Color.parseColor("#cc888888"));
-        msgTextView.setTextSize(10f);
-        msgScrollView.addView(msgTextView);
-    }
-
 
     private void hookFragment(XC_LoadPackage.LoadPackageParam loadPackageParam) {
         XposedHelpers.findAndHookMethod("android.app.Fragment", loadPackageParam.classLoader, "onResume",
@@ -102,6 +82,16 @@ public class HookMain implements IXposedHookLoadPackage {
     }
 
 
+    private void setMsgView(Activity mActivity, View mView) {
+        View decorView = mActivity.getWindow().getDecorView();
+        if (decorView instanceof FrameLayout) {
+            if (decorView.findViewWithTag(ViewHelp.getLogViewid()) == null) {
+                ((FrameLayout) decorView).addView(mView);
+            }
+        }
+    }
+
+
     private void printFragmentMsg(String fragmentName) {
         XposedBridge.log("TrackLog: 当前Fragmnet=[" + fragmentName + "]");
         setViewMsg(msg += "\n fra =" + fragmentName);
@@ -109,7 +99,7 @@ public class HookMain implements IXposedHookLoadPackage {
 
     private void printActivityMsg(String className, String packageName) {
         XposedBridge.log("TrackLog: 源=[" + packageName + "]目标=[" + className + "]");
-        setViewMsg(msg += "\n 源=[" + packageName + "]目标=[" + className + "]");
+        setViewMsg(msg += "\n [" + packageName + "]=>[" + className + "]");
     }
 
     private void setViewMsg(String msg) {
