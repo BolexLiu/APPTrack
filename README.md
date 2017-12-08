@@ -13,4 +13,10 @@ xposed APP逆向跟踪工具，跟踪Activity&Fragment启动信息
 
 
 
+![](./mi.gif)
+
+![](./taday.gif)
+
+
+
 站在wing神的肩膀上写代码，感谢![DroidSword](https://github.com/githubwing/DroidSword)项目上提供的思路。
