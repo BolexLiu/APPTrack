@@ -82,13 +82,31 @@ public class HookMain implements IXposedHookLoadPackage {
     }
 
 
-    private void setMsgView(Activity mActivity, View mView) {
+    private void setMsgView(Activity mActivity, final View mView) {
         View decorView = mActivity.getWindow().getDecorView();
         if (decorView instanceof FrameLayout) {
+            FrameLayout decorViewParent = (FrameLayout) decorView;
             if (decorView.findViewWithTag(ViewHelp.getLogViewid()) == null) {
-                ((FrameLayout) decorView).addView(mView);
+                decorViewParent.addView(mView);
+
+            } else {
+                //这样会引发ANR，不要这样做。
+//                View childAt = decorViewParent.getChildAt(decorViewParent.getChildCount() - 1);
+//                if (mView.getTag()!=(childAt.getTag())) {
+//                    decorViewParent.removeView(mView);
+//                    decorViewParent.addView(mView);
+//                }
             }
+            //// TODO: 2017/12/8 搞定微信重新加载层级问题
+            mView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mView.bringToFront();
+                }
+            },3000);
+
         }
+
     }
 
 
