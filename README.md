@@ -13,9 +13,7 @@ xposed APP逆向跟踪工具，跟踪Activity&Fragment启动信息
 
 
 
-![](./mi.gif)
-
-![](./taday.gif)
+![](./mi.gif) ![](./taday.gif)
 
 
 
