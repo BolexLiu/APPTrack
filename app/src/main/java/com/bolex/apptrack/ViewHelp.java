@@ -43,12 +43,12 @@ public class ViewHelp {
         msgTextView.setTextSize(10f);
 
         final Button btLog = new Button(mActivity);
-        btLog.setText("关闭");
+        btLog.setText(Config.isTrack ?"关闭":"跟踪");
         btLog.setTextColor(Color.WHITE);
         btLog.setBackgroundColor(Color.RED);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.CENTER_HORIZONTAL ;
+        layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
         btLog.setLayoutParams(layoutParams);
         TextView title = new TextView(mActivity);
         title.setText("AppTrack");
@@ -60,15 +60,18 @@ public class ViewHelp {
         logView.addView(title);
         logView.addView(msgScrollView);
         logView.addView(btLog);
-
+        msgScrollView.setVisibility(Config.isTrack ? View.VISIBLE : View.GONE);
         btLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (msgScrollView.getVisibility() == View.GONE) {
                     msgScrollView.setVisibility(View.VISIBLE);
+                    Config.isTrack = true;
                     btLog.setText("关闭");
+
                 } else {
                     msgScrollView.setVisibility(View.GONE);
+                    Config.isTrack = false;
                     btLog.setText("跟踪");
                 }
             }
