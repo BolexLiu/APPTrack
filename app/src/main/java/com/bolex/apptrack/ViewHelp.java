@@ -3,9 +3,7 @@ package com.bolex.apptrack;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -22,11 +20,10 @@ public class ViewHelp {
     private static TextView msgTextView;
 
     public static View creactMsgView(Activity mActivity) {
-        LinearLayout logView = new LinearLayout(mActivity);
 
+        FloatViewLayout logView = new FloatViewLayout(mActivity);
 
         logView.setTag(logViewid);
-
         logView.setOrientation(LinearLayout.VERTICAL);
         logView.setLayoutParams(new FrameLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
@@ -43,7 +40,7 @@ public class ViewHelp {
         msgTextView.setTextSize(10f);
 
         final Button btLog = new Button(mActivity);
-        btLog.setText(Config.isTrack ?"关闭":"跟踪");
+        btLog.setText(Config.isTrack ? "关闭" : "跟踪");
         btLog.setTextColor(Color.WHITE);
         btLog.setBackgroundColor(Color.RED);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -76,6 +73,7 @@ public class ViewHelp {
                 }
             }
         });
+
 
         return logView;
     }
