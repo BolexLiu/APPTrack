@@ -5,10 +5,9 @@ xposed APP逆向跟踪工具，跟踪Activity&Fragment启动信息
 
 **已实现功能：**
 - Activty&fragment信息跟踪
+- 拖动悬浮隐藏
 
 **待实现功能：**
-- 日志清理
-- 悬浮隐藏
 - 日志导出
 
 
@@ -18,7 +17,7 @@ xposed APP逆向跟踪工具，跟踪Activity&Fragment启动信息
 
 
 ```
-# 某信
+# 微信
 12-08 14:56:41.450 5969-5969/com.tencent.mm I/Xposed: TrackLog: 源=[com.tencent.mm]目标=[com.tencent.mm.ui.LauncherUI]
 12-08 14:56:41.651 5969-5969/com.tencent.mm I/Xposed: TrackLog: 当前Fragmnet=[com.tencent.mm.ui.conversation.j]
 12-08 14:56:41.768 5969-5969/com.tencent.mm I/Xposed: TrackLog: 当前Fragmnet=[com.tencent.mm.ui.contact.AddressUI$a]
