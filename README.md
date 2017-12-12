@@ -1,15 +1,19 @@
 # APPTrack
-xposed APP逆向跟踪工具，跟踪Activity&Fragment启动信息
+Xposed Module APP动态逆向跟踪分析工具，跟踪Activity&Fragment启动信息、http请求、sharedpreferences数据等
 
 项目正在完善中。。。
 
 **已实现功能：**
+
 - Activty&fragment信息跟踪
-- 拖动悬浮隐藏
+- 控制面板拖动悬浮隐藏
+
 
 **待实现功能：**
 - 日志导出
-
+- HTTP信息跟踪
+- sp数据
+- 单应用独立跟踪
 
 
 ![](./mi.gif) ![](./taday.gif)

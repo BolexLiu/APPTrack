@@ -1,4 +1,4 @@
-package com.bolex.apptrack;
+package com.bolex.apptrack.ui;
 
 import android.content.Context;
 import android.support.v4.widget.ViewDragHelper;

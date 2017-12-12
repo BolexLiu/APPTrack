@@ -22,4 +22,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
+    provided 'com.squareup.okhttp3:okhttp:3.9.1'
 }

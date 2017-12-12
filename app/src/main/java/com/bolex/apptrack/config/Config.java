@@ -1,4 +1,4 @@
-package com.bolex.apptrack;
+package com.bolex.apptrack.config;
 
 /**
  * Created by liushenen on 2017/12/8.

@@ -1,4 +1,4 @@
-package com.bolex.apptrack;
+package com.bolex.apptrack.ui;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -9,6 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.bolex.apptrack.config.Config;
 
 /**
  * Created by liushenen on 2017/12/8.
@@ -48,7 +50,7 @@ public class ViewHelp {
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
         btLog.setLayoutParams(layoutParams);
         TextView title = new TextView(mActivity);
-        title.setText("AppTrack");
+        title.setText("Track");
         title.setGravity(Gravity.CENTER_HORIZONTAL);
         title.setTextColor(Color.WHITE);
         title.setBackgroundColor(Color.parseColor("#88000000"));
