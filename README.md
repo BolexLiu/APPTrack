@@ -39,6 +39,3 @@ Xposed Module APP动态逆向跟踪分析工具，跟踪Activity&Fragment启动�
 12-08 14:56:59.730 5969-5969/com.tencent.mm I/Xposed: TrackLog: 当前Fragmnet=[com.tencent.mm.ui.chatting.En_5b8fbb1e$a]
 
 ```
-
-
-站在wing神的肩膀上写代码，感谢![DroidSword](https://github.com/githubwing/DroidSword)项目上提供的思路。
